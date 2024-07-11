@@ -111,7 +111,7 @@ export default function Home() {
 
   return (
     <div>
-        <nav className="navbar">
+        <nav className="navbar-1">
             <div className="navbar__brand">
                 <img
                         src="https://www.freepnglogos.com/uploads/netflix-logo-0.png"
@@ -135,16 +135,13 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="nav__item">
-                    <a href='/' className="signin__button">Sign in</a>
-                </div>
-                <div className="nav__item">
-                    <a href='/' className="signin__button">See All</a>
+                <div className="nav__item mt-2">
+                    <a href='/gallery' className="signin__button">Sign in</a>
                 </div>
             </div>
         </nav>
 
-    <main>
+    <main className="main-container">
         <section className="hero">
             <div className="hero__bg__image__container">
                 <img
@@ -177,6 +174,8 @@ export default function Home() {
                 </div>
             </div>
         </section>
+
+        
         <section className="features__container">
             <div className="feature">
                 <div className="feature__details">
@@ -207,6 +206,8 @@ export default function Home() {
                     </div>
                 </div>
             </div>
+
+            
             <div className="feature">
                 <div className="feature__details">
                     <h3 className="feature__title">
@@ -310,7 +311,7 @@ export default function Home() {
                         transition: 'max-height 0.3s ease'
                         }}
                     >
-                        {accordion.content}
+                        <div className='text-white py-3' style={{fontSize: '15px'}}>{accordion.content}</div>
                     </div>
                 </div>
                 ))}

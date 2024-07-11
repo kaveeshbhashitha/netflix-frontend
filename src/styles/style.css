@@ -11,7 +11,7 @@ body {
   font-family: "Poppins", sans-serif;
 }
 
-.navbar {
+.navbar-1 {
   position: absolute;
   top: 0;
   width: 100%;
@@ -51,6 +51,9 @@ body {
   border-radius: 4px;
   background: rgba(0, 0, 0, 0.4);
 }
+.hero__card{
+  color: white;
+}
 
 .signin__button {
   background-color: #dc030f;
@@ -88,6 +91,9 @@ body {
     rgba(0, 0, 0, 0) 60%,
     rgba(0, 0, 0, 0.8) 100%
   );
+}
+.main-container{
+  
 }
 
 .hero__card {
@@ -172,6 +178,8 @@ body {
 .feature {
   border-top: 8px solid #222;
   padding: 2rem 1rem;
+  background-color: black;
+  color: white;
 }
 
 .feature__details {
@@ -210,6 +218,10 @@ body {
 
 .feature__backgroud__video {
   width: 100%;
+}
+.container-color{
+  background-color: black;
+  color: white;
 }
 
 .feature__2__poster__container {
@@ -295,6 +307,8 @@ body {
 .FAQ__list__container {
   border-top: 8px solid #222;
   padding: 2rem 0;
+  background-color: black;
+  color: white;
 }
 .FAQ__heading {
   font-size: 20px;
@@ -328,6 +342,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  background-color: black;
 }
 
 .footer__row__2 {
@@ -423,23 +438,28 @@ footer {
 }
 
 @media (min-width: 1024px) {
-  .navbar {
+  .navbar-1 {
     padding: 2% 5%;
   }
 
-  .navbar__brand {
+  .navbar-1__brand {
     width: 150px;
   }
 
   .signin__button {
     padding: 10px 20px;
     font-size: 18px;
+    text-decoration: none;
+  }
+
+  .signin__button:hover{
+    cursor: pointer;
   }
   .dropdown__container {
     padding: 10px 5px;
   }
 
-  .navbar__nav__items {
+  .navbar-1__nav__items {
     gap: 30px;
   }
 
