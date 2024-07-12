@@ -1,15 +1,7 @@
 /* Definições Gerais */
-body {
-    background-color: #141414;
-    overflow-x: hidden;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
-
-}
 
 .netflix-padding-left{
-    padding-left: 57px;
+    padding-left: 27px;
 }
 
 
@@ -75,11 +67,6 @@ body {
     color: #fff;
 }
 
-i{
-    font-size: 20px;
-    color: #fff;
-    padding: 5px 20px;
-}
 
 .netflix-profile{
     width: 30px;

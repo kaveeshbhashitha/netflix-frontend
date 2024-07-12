@@ -1,14 +1,15 @@
-import React from 'react';
+import React from 'react'
 import '../../styles/landing.css';
-import '../../styles/responsive.css';
 import logo from '../../images/logo.png';
 import image2 from '../../images/image2.png';
 import sampleVideo from '../../video/video.mp4';
-
+import VideoGallery from '../../components/VideoGallery';
+import {Link} from 'react-router-dom';
 
 export default function gallery() {
+    
   return (
-        <div style={{position: 'relative'}}>
+        <div style={{position: 'relative'}} className='bg-dark'>
             <nav className="navbar navbar-expand-lg netflix-navbar netflix-padding-left netflix-padding-right">
                 <div className="container-fluid">
                 <div className="netflix-row">
@@ -18,7 +19,7 @@ export default function gallery() {
                     </a>
                     <div  className="netflix-nav">
                         <section>
-                            <button>Video</button>
+                            <Link to={'/video'} className='text-decoration-none text-white'>Video</Link>
                             <button className='mx-2'>Profile</button>
                             <button>Filmes</button>
                             <button className='mx-2'>Bombando</button>
@@ -51,74 +52,93 @@ export default function gallery() {
                 </div>
             </nav>
 
-            <div className="">
+            <div>
                 <section className="netflix-home-video">
                 <div className="top"></div>
                 <div className="bottom"></div>
                 <video src={sampleVideo} autoPlay loop muted></video>
                 <div className="content">
                     <section className="left">
-                    <img src={image2} alt="hi"/>
+                        <img src={image2} alt="hi"/>
 
-                    <div className="d-flex mt-2">
-                        <button className="btn btn-light m-2" > <i className="bi bi-play-fill" style={{color: 'black',  padding: '0%'}}></i> Assista Agora </button>
-                        <button className="btn btn-secondary m-2"><i className="bi bi-info-circle" style={{padding: '0%'}}></i> Mais Informações</button>
-                    </div>
+                        <div className="d-flex mt-2">
+                            <button className="btn btn-light m-2" > <i className="bi bi-play-fill" style={{color: 'black',  padding: '0%'}}></i> Assista Agora </button>
+                            <button className="btn btn-secondary m-2"><i className="bi bi-info-circle" style={{padding: '0%'}}></i> Mais Informações</button>
+                        </div>
                     </section>
                 </div>
                 </section>
             </div>
-
-            
-            
-            <div className="container footer">
+            <div className="container mt-2">
                 <div className="row">
-                <div className="col-md-10 mx-auto">
-                    <div className="row">
-                    <div className="col-md-3">
-                        <ul>
-                        <li>Audio e Subtitulos</li>
-                        <li>Centro de Mídias</li>
-                        <li>Privacidade</li>
-                        <li>Contato</li>
-                        </ul>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
                     </div>
-                    <div className="col-md-3">
-                        <ul>
-                        <li>Audio descrição</li>
-                        <li>Relação investidor</li>
-                        <li>Termos de Serviço</li>
-                        <li>Noticias</li>
-                        </ul>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
                     </div>
-                    <div className="col-md-3">
-                        <ul>
-                        <li>Centro de Ajuda</li>
-                        <li>Trabalho</li>
-
-                        </ul>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
                     </div>
-                    <div className="col-md-3">
-                        <ul>
-                        <li>Cartão Presente</li>
-                        <li>Se inscreva</li>
-
-                        </ul>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
                     </div>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
+                    </div>
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                    <VideoGallery videoId="il_t1WVLNxk" />
                     </div>
                 </div>
-                </div>
-                <div className="row">
-                <div className="col-10 mx-auto">
-                    <div className="row">
-
-                    <div className="col">
-                        <p className="copy-right">@netflix copyright</p>
-                    </div>
-                    </div>
-                </div>
-                </div>
+            </div> 
+            <footer>
+        <div className="footer__row__1">
+            <h4>Questions? Call 000-800-040-1843</h4>
+        </div>
+        <div className="footer__row__2">
+            <div className="column__1">
+                <p>FAQ</p>
+                <p>Investor Relations</p>
+                <p>Privacy</p>
+                <p>Speed Test</p>
+            </div>
+            <div className="column__2">
+                <p>Help Centre</p>
+                <p>Jobs</p>
+                <p>Cookie Preferences</p>
+                <p>Legal Notices</p>
+            </div>
+            <div className="column__3">
+                <p>Account</p>
+                <p>Ways to Watch</p>
+                <p>Corporate Information</p>
+                <p>Only on Netflix</p>
+            </div>
+            <div className="column__4">
+                <p>Media Centre</p>
+                <p>Terms of Use</p>
+                <p>Contact Us</p>
             </div>
         </div>
+        <div className="footer__row__3">
+            <div className="dropdown__container">
+                <i className="fas fa-globe"></i>
+                <select
+                        name="languages"
+                        className="language__drop__down"
+                >
+                    <option value="english" selected>English</option>
+                    <option value="hindi">हिन्दी</option>
+                </select>
+            </div>
+        </div>
+        <div className="footer__row__4">
+            <p>Netflix India</p>
+        </div>
+    </footer>
+    </div>
   )
 }

@@ -121,19 +121,18 @@ export default function Home() {
             </div>
 
             <div className="navbar__nav__items">
-                <div class="nav__item">
-                    <div class="dropdown__container">
-                        <i className="fas fa-globe"></i>
-                        <select
-                                name="languages"
-                                id="languagesSelect"
-                                className="language__drop__down"
-                        >
-                            <option value="english" selected >English</option>
-                            <option value="hindi">हिन्दी</option>
-                        </select>
-                    </div>
+                <div className="footer__row__3">
+                <div className="dropdown__container">
+                    <i className="fas fa-globe"></i>
+                    <select
+                            name="languages"
+                            className="language__drop__down"
+                    >
+                        <option value="english" selected>English</option>
+                        <option value="hindi">हिन्दी</option>
+                    </select>
                 </div>
+            </div>
 
                 <div className="nav__item mt-2">
                     <a href='/gallery' className="signin__button">Sign in</a>
@@ -287,7 +286,7 @@ export default function Home() {
                 <div className="feature__image__container">
                     <img
                             src="https://occ-0-4023-2164.1.nflxso.net/dnm/api/v6/19OhWN2dO19C9txTON9tvTFtefw/AAAABVxdX2WnFSp49eXb1do0euaj-F8upNImjofE77XStKhf5kUHG94DPlTiGYqPeYNtiox-82NWEK0Ls3CnLe3WWClGdiJP.png?r=5cf"
-                            alt="Feature image"
+                            alt="image"
                             className="feature__image"
                     />
                 </div>
