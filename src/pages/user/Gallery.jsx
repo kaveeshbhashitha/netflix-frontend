@@ -1,19 +1,65 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect} from 'react'
 import '../../styles/landing.css';
 import logo from '../../images/logo.png';
 import image2 from '../../images/image2.png';
 import sampleVideo from '../../video/video.mp4';
-import VideoGallery from '../../components/VideoGallery';
 import {useNavigate} from 'react-router-dom';
 import axios from 'axios';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlayCircle} from '@fortawesome/free-solid-svg-icons';
+import YouTube from 'react-youtube';
 
 export default function Gallery() {
-    const[message, setMessage] = useState(null);
     const [video, setVideo] = useState('');
     let navigate = useNavigate();
+    const [player, setPlayer] = useState(null);
+    //const {userId} = useParams();
+    var userId = 1;
 
     const handleNavigate = () => {
         navigate("/video")
+    };
+
+    const opts = {
+        height: 'auto',
+        width: 'auto',
+        playerVars: {
+          autoplay: 0,
+        },
+    };
+
+    const onReady = (event) => {
+        setPlayer(event.target);
+    };
+    
+      
+
+    const handleVideoClick = async (videoID) => {
+        try {
+            const response = await axios.post('http://localhost:8080/view/add', {
+                userId: userId,
+                videoId: videoID
+            });
+            if (response.status === 200) {
+                console.log('View added successfully');
+                    if (player) {
+                      player.playVideo();
+                      const iframe = player.getIframe();
+                      if (iframe.requestFullscreen) {
+                        iframe.requestFullscreen();
+                      } else if (iframe.mozRequestFullScreen) { 
+                        iframe.mozRequestFullScreen();
+                      } else if (iframe.webkitRequestFullscreen) {
+                        iframe.webkitRequestFullscreen();
+                      } else if (iframe.msRequestFullscreen) { 
+                        iframe.msRequestFullscreen();
+                      }
+                    }
+                };
+                userId++;
+        } catch (error) {
+            console.error('Error adding view:', error);
+        }
     };
 
     const searchById = async () => {
@@ -21,13 +67,13 @@ export default function Gallery() {
           const response = await axios.get('http://localhost:8080/video/searchAll');
           setVideo(response.data); 
         } catch (error) {
-          setMessage({ text: 'Error sloading videos', color: 'red' });
+          console.log("Error")
         }
-      };
+    };
     
-      useEffect(() => {
+    useEffect(() => {
         searchById();
-      }, []);
+    }, []);
 
   return (
         <div style={{position: 'relative'}} className='bg-dark'>
@@ -90,31 +136,22 @@ export default function Gallery() {
                 </div>
                 </section>
             </div>
+            {video.length > 0 && (
             <div className="container mt-2">
                 <div className="row">
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
+
+                {video.map((video) => (
+                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4"> 
+                        <YouTube videoId={video.youtubeId} opts={opts} onReady={onReady}/>
+                        <div className='d-flex justify-content-end'>
+                            <button className="btn btn-danger btn-sm mx-2" onClick={() => handleVideoClick(video.videoId)}><FontAwesomeIcon icon={faPlayCircle}/></button>
+                        </div>
                     </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
-                    <div className="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                    <VideoGallery videoId="il_t1WVLNxk" />
-                    </div>
+                ))}
+
                 </div>
             </div> 
+            )}
             <footer>
         <div className="footer__row__1">
             <h4>Questions? Call 000-800-040-1843</h4>

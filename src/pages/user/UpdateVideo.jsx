@@ -12,7 +12,6 @@ export default function UpdateVideo() {
     const {id} = useParams();
     const[video, setVideo] = useState([]);
     const[message, setMessage] = useState(null);
-    const[formData, setFormData] = useState({ youtubeId: '', videoTitle: '', category: '', videoType: '' });
 
     useEffect(() => {
         loadUser()
