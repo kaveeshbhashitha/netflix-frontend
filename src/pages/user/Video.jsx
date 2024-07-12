@@ -11,7 +11,8 @@ export default function Video() {
 
     const[isNavOpen, setIsNavOpen] = useState(false);
     const[message, setMessage] = useState(null);
-    const[video, setVideo] = useState('');
+    const[video, setVideo] = useState([]);
+    const [query, setQuery] = useState('');
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -45,9 +46,42 @@ export default function Video() {
         }
     };
     
-      useEffect(() => {
+    useEffect(() => {
         searchById();
-      }, []);
+    }, []);
+
+    const searchVideos = async () => {
+        try {
+            const [titleResponse, categoryResponse, typeResponse] = await Promise.all([
+                axios.get(`http://localhost:8080/video/searchByTitle/${query}`),
+                axios.get(`http://localhost:8080/video/searchByCategory/${query}`),
+                axios.get(`http://localhost:8080/video/searchByVideoType/${query}`)
+            ]);
+
+            const allResults = [
+                ...titleResponse.data,
+                ...categoryResponse.data,
+                ...typeResponse.data
+            ];
+
+            if (allResults.length === 0) {
+                setMessage('No videos found');
+            } else {
+                setVideo(allResults);
+                setMessage('');
+            }
+        } catch (error) {
+            setMessage('Error loading videos');
+        }
+    };
+
+    const handleSearchClick = () => {
+        searchVideos();
+    };
+
+    const handleQueryChange = (e) => {
+        setQuery(e.target.value);
+    };
 
   return (
     <div classNameName='bg-white'>
@@ -78,8 +112,8 @@ export default function Video() {
                 </div>
                 <div className="">
                     <form className="d-flex">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search Movie" aria-label="Search"/>
-                        <button className="btn btn-outline-danger my-2 my-sm-0 mx-2" type="submit">Search</button>
+                        <input className="form-control mr-sm-2" type="search" placeholder="Search Movie" value={query} onChange={handleQueryChange}/>
+                        <button className="btn btn-outline-danger my-2 my-sm-0 mx-2" onClick={handleSearchClick}>Search</button>
                         <a href="./addvideo" className="btn btn-danger my-2 my-sm-0">Add</a>
                     </form>
                 </div>
@@ -110,7 +144,7 @@ export default function Video() {
                             <td>{video.dateAdded}</td>
                             <td>{video.timeAdded}</td>
                             <td>
-                                <Link to={`/pchanel/${video.videoId}`} className="btn btn-outline-dark btn-sm mx-1">Update</Link>
+                                <Link to={`/addvideo/${video.videoId}`} className="btn btn-outline-dark btn-sm mx-1">Update</Link>
                                 <button onClick={() => handleDelete(video.videoId)} className="btn btn-outline-danger btn-sm">Delete</button>
                             </td>
                         </tr>

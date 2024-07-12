@@ -1,37 +1,59 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import '../../styles/videolist.css';
 import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import axios from 'axios';
+import { useParams } from 'react-router-dom';
 
-export default function AddVideo() {
+export default function UpdateVideo() {
     const [isNavOpen, setIsNavOpen] = useState(false);
-    const [message, setMessage] = useState('');
-    const [formData, setFormData] = useState({ youtubeId: '', videoTitle: '', category: '', videoType: '' });
+    const {id} = useParams();
+    const[video, setVideo] = useState([]);
+    const[message, setMessage] = useState(null);
+    const[formData, setFormData] = useState({ youtubeId: '', videoTitle: '', category: '', videoType: '' });
 
-    const handleChange = (e) => {
-        setFormData({ ...formData, [e.target.name]: e.target.value });
-    };
-
-    const handleSubmit = async (e) => {
-        e.preventDefault();
-        try {
-            const response = await axios.post('http://localhost:8080/video/add', formData);
-            if (response.status === 200) {
-                setMessage({text: 'Video added successfully', class: 'alert alert-success'});
-            }else{
-                setMessage({text: 'Video insertion not success', class: 'alert alert-danger'});
-            }
-        } catch (error) {
-            setMessage({ text: 'Error inserting videos', class: 'alert alert-danger' });
+    useEffect(() => {
+        loadUser()
+      }, []);
+    
+      const loadUser=async () => {
+        const result = await axios.get(`http://localhost:8080/video/searchById/${id}`)
+        if (result.status === 200) {
+            setVideo(result.data)
+        }else{
+            setMessage({ text: 'Error loading videos', class: 'alert alert-danger' });
         }
-    };
+      };
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setVideo({ ...video, [name]: value });
+    };
+
+    const updateVideo = async () => {
+        try {
+            const response = await axios.put(`http://localhost:8080/video/update/${id}`, video);
+            if (response.status === 200) {
+                setMessage({ text: 'Updated successfully', class: 'alert alert-success' });
+            } else {
+                setMessage({ text: 'Error updating video', class: 'alert alert-danger' });
+            }
+        } catch (error) {
+            setMessage({ text: 'Error with backend', class: 'alert alert-danger' });
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        updateVideo();
+    };
+
 
   return (
     <div>
@@ -69,41 +91,41 @@ export default function AddVideo() {
             </div>
             <div>{ message && <div class={ message.class }>{message.text}</div>}</div>
             <div className='p-4 border rounded'>
-            <h5 className="mt-4 mb-4 text-danger">Add New Video</h5>
-                <form action="#" method="post">
+                <h5 className="mt-4 mb-4 text-danger">Update Video</h5>
+                <form onSubmit={handleSubmit}>
                     <div className="form-group mb-3">
-                        <label for="name" className='text-dark mb-2'>YouTube Video ID</label>
-                        <input type="text" name="youtubeId" placeholder='Enter youtube ID' className="form-control" value={formData.youtubeId} onChange={handleChange}/>
+                        <label htmlFor="youtubeId" className='text-dark mb-2'>YouTube Video ID</label>
+                        <input type="text" name="youtubeId" placeholder='Enter YouTube ID' className="form-control" value={video.youtubeId} onChange={handleInputChange}/>
                     </div>
                     <div className="form-group mb-3">
-                        <label for="title" className='text-dark mb-2'>Video Title</label>
-                        <input type="text" name="videoTitle" placeholder='Enter video title' className="form-control" value={formData.videoTitle} onChange={handleChange}/>
+                        <label htmlFor="videoTitle" className='text-dark mb-2'>Video Title</label>
+                        <input type="text" name="videoTitle" placeholder='Enter video title' className="form-control" value={video.videoTitle} onChange={handleInputChange}/>
                     </div>
                     <div className="form-group mb-3">
-                        <label for="category" className='text-dark mb-2'>Video Category</label>
-                        <select type="text" name="category" className="form-control" value={formData.category} onChange={handleChange}>
-                            <option value="">-- Select movie category --</option>
+                        <label htmlFor="category" className='text-dark mb-2'>Video Category</label>
+                        <select name="category" className="form-control" value={video.category} onChange={handleInputChange}>
+                            <option value="">-- Select category --</option>
                             <option value="Horror">Horror</option>
                             <option value="Action">Action</option>
                             <option value="Anime">Anime</option>
                             <option value="Hindi">Hindi</option>
                             <option value="Hollywood">Hollywood</option>
-                            <option value="chineese">Chineese</option>
+                            <option value="Chinese">Chinese</option>
                             <option value="K-Drama">K-Drama</option>
                         </select>
                     </div>
                     <div className="form-group mb-3">
-                        <label for="category" className='text-dark mb-2'>Video Type</label>
-                        <select type="text" name="videoType" className="form-control" value={formData.videoType} onChange={handleChange}>
-                            <option value="">-- Select movie type --</option>
+                        <label htmlFor="videoType" className='text-dark mb-2'>Video Type</label>
+                        <select name="videoType" className="form-control" value={video.videoType} onChange={handleInputChange}>
+                            <option value="">-- Select video type --</option>
                             <option value="Movie">Movie</option>
-                            <option value="Documentry">Documentry</option>
-                            <option value="TV- Series">TV- Series</option>
+                            <option value="Documentary">Documentary</option>
+                            <option value="TV-Series">TV-Series</option>
                             <option value="Drama">Drama</option>
                         </select>
                     </div>
                     <div className="d-flex justify-content-end mt-3">
-                        <button className="btn btn-outline-danger mx-1" onClick={handleSubmit}>Save Video</button>
+                        <button type="submit" className="btn btn-outline-danger mx-1">Save Video</button>
                         <a href="/video" className="btn btn-outline-dark">Back</a>
                     </div>
                 </form>
