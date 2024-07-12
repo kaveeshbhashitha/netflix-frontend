@@ -1,13 +1,34 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import '../../styles/landing.css';
 import logo from '../../images/logo.png';
 import image2 from '../../images/image2.png';
 import sampleVideo from '../../video/video.mp4';
 import VideoGallery from '../../components/VideoGallery';
-import {Link} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
+import axios from 'axios';
 
-export default function gallery() {
+export default function Gallery() {
+    const[message, setMessage] = useState(null);
+    const [video, setVideo] = useState('');
+    let navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/video")
+    };
+
+    const searchById = async () => {
+        try {
+          const response = await axios.get('http://localhost:8080/video/searchAll');
+          setVideo(response.data); 
+        } catch (error) {
+          setMessage({ text: 'Error sloading videos', color: 'red' });
+        }
+      };
     
+      useEffect(() => {
+        searchById();
+      }, []);
+
   return (
         <div style={{position: 'relative'}} className='bg-dark'>
             <nav className="navbar navbar-expand-lg netflix-navbar netflix-padding-left netflix-padding-right">
@@ -19,7 +40,7 @@ export default function gallery() {
                     </a>
                     <div  className="netflix-nav">
                         <section>
-                            <Link to={'/video'} className='text-decoration-none text-white'>Video</Link>
+                            <button onClick={handleNavigate}>Video</button>
                             <button className='mx-2'>Profile</button>
                             <button>Filmes</button>
                             <button className='mx-2'>Bombando</button>

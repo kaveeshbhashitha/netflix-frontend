@@ -3,15 +3,51 @@ import '../../styles/videolist.css';
 import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 export default function Video() {
 
-    const [isNavOpen, setIsNavOpen] = useState(false);
+    const[isNavOpen, setIsNavOpen] = useState(false);
+    const[message, setMessage] = useState(null);
+    const[video, setVideo] = useState('');
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
     };
+
+    const handleDelete = async (videoId) => {
+        try {
+          const response = await axios.delete(`http://localhost:8080/video/delete/${videoId}`);
+          if (response.status === 200) {
+            setMessage({ text: 'Video was deleted successfully', class: 'alert alert-success' });
+            searchById();
+          } else {
+            setMessage({ text: 'Failed to delete video', class: 'alert alert-danger' });
+            searchById();
+          }
+        } catch (error) {
+          setMessage({ text: 'Error deleting video', class: 'alert alert-danger' });
+        }
+      };
+
+    const searchById = async () => {
+        try {
+            const response = await axios.get('http://localhost:8080/video/searchAll');
+            if (response.data.length === 0) {
+                setMessage({ text: 'No videos found', class: 'alert alert-warning' });
+            } else {
+                setVideo(response.data);
+            }
+        } catch (error) {
+            setMessage({ text: 'Error loading videos', class: 'alert alert-danger' });
+        }
+    };
+    
+      useEffect(() => {
+        searchById();
+      }, []);
 
   return (
     <div classNameName='bg-white'>
@@ -48,33 +84,39 @@ export default function Video() {
                     </form>
                 </div>
             </div>
-            
+            <div>{ message && <div class={ message.class }>{message.text}</div>}</div>
             <table className="table table-hover">
                 <thead>
-                <tr>
-                <th>Record ID</th>
-                <th>Video ID</th>
-                <th>Video Title</th>
-                <th>Category</th>
-                <th>Added Date</th>
-                <th>Added Time</th>
-                <th>More Actions</th>
-                </tr>
+                    <tr>
+                        <th>Record ID</th>
+                        <th>Video ID</th>
+                        <th>Video Title</th>
+                        <th>Category</th>
+                        <th>Type</th>
+                        <th>Added Date</th>
+                        <th>Added Time</th>
+                        <th>More Actions</th>
+                    </tr>
                 </thead>
+                {video.length > 0 && (
                 <tbody>
-                <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td>
-                    <a href='/' className="btn btn-outline-dark btn-sm mx-1">Update</a>
-                    <a href='/' className="btn btn-outline-danger btn-sm">Delete</a>
-                </td>
-                </tr>
+                    {video.map((video) => (
+                        <tr>
+                            <td>{video.videoId}</td>
+                            <td>{video.youtubeId}</td>
+                            <td>{video.videoTitle}</td>
+                            <td>{video.category}</td>
+                            <td>{video.videoType}</td>
+                            <td>{video.dateAdded}</td>
+                            <td>{video.timeAdded}</td>
+                            <td>
+                                <Link to={`/pchanel/${video.videoId}`} className="btn btn-outline-dark btn-sm mx-1">Update</Link>
+                                <button onClick={() => handleDelete(video.videoId)} className="btn btn-outline-danger btn-sm">Delete</button>
+                            </td>
+                        </tr>
+                    ))}    
                 </tbody>
+                )}
             </table>
             <div>
         </div>
