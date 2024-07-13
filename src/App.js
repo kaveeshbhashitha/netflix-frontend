@@ -5,6 +5,7 @@ import Gallery from "./pages/user/Gallery";
 import Video from "./pages/user/Video";
 import AddVideo from "./pages/user/AddVideo";
 import UpdateVideo from "./pages/user/UpdateVideo";
+import Subscriber from "./pages/user/Subscriber";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route exact path="/video" element={<Video/>}/>
           <Route exact path="/addvideo" element={<AddVideo/>}/>
           <Route exact path="/addvideo/:id" element={<UpdateVideo/>}/>
+          <Route exact path="/subscriber" element={<Subscriber/>}/>
         </Routes> 
       </Router>
     </div>
