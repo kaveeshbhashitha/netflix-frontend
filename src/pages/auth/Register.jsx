@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import '../../styles/login.css';
 
 export default function Register() {
 
@@ -17,45 +18,48 @@ export default function Register() {
             console.log(response.data);
             navigate('/login');
         } catch (error) {
-            setMessage('Error registering user');
+            setMessage({ text: 'Error occuerd, registration faild', class: 'alert alert-danger' });
         }
     };
 
   return (
-    <div className="container">
-      <h2>Register</h2>
-      <form onSubmit={handleRegister}>
-        <div className="form-group">
-          <label className='text-dark'>User name</label>
-          <input
-            type="text"
-            className="form-control"
-            value={userName}
-            onChange={(e) => setUserName(e.target.value)}
-          />
+      <div className="container">
+        <div className="body">
+            <nav className='nav'>
+                <a href="/"><img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="logo"/></a>
+            </nav>
+            <div class="form-wrapper">
+                <small>{ message && <h6 class={ message.class }>{message.text}</h6>}</small>
+                <h2>Sign Up</h2>
+                <form onSubmit={handleRegister} className='form'>
+                    <div class="form-control-1">
+                        <input type="text" required value={userName} onChange={(e) => setUserName(e.target.value)} className="input"/>
+                        <label>Your Name</label>
+                    </div>
+                    <div class="form-control-1">
+                        <input type="email" required value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="input"/>
+                        <label>Your Email</label>
+                    </div>
+                    <div class="form-control-1">
+                        <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="input"/>
+                        <label>Give Password</label>
+                    </div>
+                    <button className='button py-3' type="submit">Sign Up</button>
+                    <div class="form-help"> 
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember-me" />
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <a href="/">Back to Home</a>
+                    </div>
+                </form>
+                <p>Already Netflix Member? <a href="/login">Sign in now</a></p>
+                <small>
+                    This page is protected by Google reCAPTCHA to ensure you're not a bot. 
+                    <a href="/">Learn more.</a>
+                </small>
+            </div>
         </div>
-        <div className="form-group">
-          <label className='text-dark'>User Email</label>
-          <input
-            type="text"
-            className="form-control"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
-        </div>
-        <div className="form-group">
-          <label className='text-dark'>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className="text-dark">Already have an account? <a href="/login" className='text-primary mx-1 text-decoration-none'>Login</a></div>
-        <button type="submit" className="btn btn-primary">Register</button>
-      </form>
-      {message && <p className="mt-3 text-dark">{message}</p>}
     </div>
   )
 }

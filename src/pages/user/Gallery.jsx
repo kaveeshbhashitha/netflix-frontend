@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle} from '@fortawesome/free-solid-svg-icons';
 import YouTube from 'react-youtube';
 import useAuthCheck from '../../AuthCheck';
+import { Link } from 'react-router-dom';
 
 export default function Gallery() {
 
@@ -139,7 +140,7 @@ export default function Gallery() {
                     </div>
                     </div>
                     <div className="right d-flex align-items-center">
-                        <div className="btn btn-danger btn-circle"> {user && <p>{user.initials}</p>}</div>
+                        {user &&<Link to={`/video/${user.userEmail}`}><div className="btn btn-danger btn-circle"> <p>{user.initials}</p></div></Link>}
                     </div>
                 </div>
                 </div>
