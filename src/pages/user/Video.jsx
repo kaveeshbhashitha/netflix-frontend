@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export default function Video() {
 
@@ -13,6 +13,7 @@ export default function Video() {
     const[message, setMessage] = useState(null);
     const[video, setVideo] = useState([]);
     const [query, setQuery] = useState('');
+    let navigate = useNavigate();
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);
@@ -75,6 +76,25 @@ export default function Video() {
         }
     };
 
+    useEffect(() => {
+        const user = sessionStorage.getItem('user');
+        if (!user) {
+          navigate('/login');
+        }
+    }, [navigate]);
+    
+    const handleLogout = async () => {
+        try {
+          const response = await axios.post('http://localhost:8080/user/logout');
+          setMessage(response.data);
+          sessionStorage.removeItem('user');
+          navigate('/login');
+        } catch (error) {
+          setMessage('Error logging out');
+        }
+    };
+
+
     const handleSearchClick = () => {
         searchVideos();
     };
@@ -112,9 +132,10 @@ export default function Video() {
                 </div>
                 <div className="">
                     <form className="d-flex">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search Movie" value={query} onChange={handleQueryChange}/>
-                        <button className="btn btn-outline-danger my-2 my-sm-0 mx-2" onClick={handleSearchClick}>Search</button>
-                        <a href="./addvideo" className="btn btn-danger my-2 my-sm-0">Add</a>
+                        <input className="form-control mr-sm-2 mx-1" type="search" placeholder="Search Movie" value={query} onChange={handleQueryChange}/>
+                        <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleSearchClick}>Search</button>
+                        <a href="./addvideo" className="btn btn-danger my-2 my-sm-0 mx-2">Add</a>
+                        <button className="btn btn-primary my-2 my-sm-0" onClick={handleLogout}>Logout</button>
                     </form>
                 </div>
             </div>

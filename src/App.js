@@ -6,6 +6,8 @@ import Video from "./pages/user/Video";
 import AddVideo from "./pages/user/AddVideo";
 import UpdateVideo from "./pages/user/UpdateVideo";
 import Subscriber from "./pages/user/Subscriber";
+import Register from "./pages/auth/Register";
+import Login from "./pages/auth/Login";
 
 function App() {
   return (
@@ -18,6 +20,8 @@ function App() {
           <Route exact path="/addvideo" element={<AddVideo/>}/>
           <Route exact path="/addvideo/:id" element={<UpdateVideo/>}/>
           <Route exact path="/subscriber" element={<Subscriber/>}/>
+          <Route exact path="/register" element={<Register/>}/>
+          <Route exact path="/login" element={<Login/>}/>
         </Routes> 
       </Router>
     </div>

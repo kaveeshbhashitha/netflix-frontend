@@ -16,8 +16,14 @@ export default function Gallery() {
     //const {userId} = useParams();
     var userId = 1;
 
-    const handleNavigate = () => {
+    const handleNavigateVideo = () => {
         navigate("/video")
+    };
+    const handleNavigateLogin = () => {
+        navigate("/login")
+    };
+    const handleNavigateRegister = () => {
+        navigate("/register")
     };
 
     const opts = {
@@ -86,9 +92,9 @@ export default function Gallery() {
                     </a>
                     <div  className="netflix-nav">
                         <section>
-                            <button onClick={handleNavigate}>Video</button>
-                            <button className='mx-2'>Profile</button>
-                            <button>Filmes</button>
+                            <button onClick={handleNavigateVideo}>Video</button>
+                            <button className='mx-2' onClick={handleNavigateLogin}>Login</button>
+                            <button onClick={handleNavigateRegister}>Register</button>
                             <button className='mx-2'>Bombando</button>
                             <button>Minha Lista</button>
                             <button className='mx-2'>Navegar por Idiomas</button>
