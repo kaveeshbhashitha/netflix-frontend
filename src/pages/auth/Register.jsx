@@ -52,6 +52,7 @@ export default function Register() {
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="text-dark">Already have an account? <a href="/login" className='text-primary mx-1 text-decoration-none'>Login</a></div>
         <button type="submit" className="btn btn-primary">Register</button>
       </form>
       {message && <p className="mt-3 text-dark">{message}</p>}

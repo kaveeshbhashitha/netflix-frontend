@@ -8,8 +8,12 @@ import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle} from '@fortawesome/free-solid-svg-icons';
 import YouTube from 'react-youtube';
+import useAuthCheck from '../../AuthCheck';
 
 export default function Gallery() {
+
+    useAuthCheck();
+
     const [video, setVideo] = useState('');
     let navigate = useNavigate();
     const [player, setPlayer] = useState(null);

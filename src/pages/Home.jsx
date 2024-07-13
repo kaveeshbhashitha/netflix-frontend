@@ -135,7 +135,7 @@ export default function Home() {
             </div>
 
                 <div className="nav__item mt-2">
-                    <a href='/gallery' className="signin__button">Sign in</a>
+                    <a href='/login' className="signin__button">Sign in</a>
                 </div>
             </div>
         </nav>

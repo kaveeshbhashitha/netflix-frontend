@@ -6,8 +6,11 @@ import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList,
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
+import userAuthCheck from '../../AuthCheck';
 
 export default function Video() {
+
+    userAuthCheck();
 
     const[isNavOpen, setIsNavOpen] = useState(false);
     const[message, setMessage] = useState(null);
