@@ -111,7 +111,7 @@ export default function Gallery() {
                 <div className="container-fluid">
                 <div className="netflix-row">
                     <div className="left d-flex align-items-center">
-                    <a className="navbar-brand" href="/">
+                    <a className="navbar-brand" href="/test">
                         <img src={logo} alt="hi"/>
                     </a>
                     <div  className="netflix-nav">
