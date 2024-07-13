@@ -106,6 +106,10 @@ export default function Video() {
         setQuery(e.target.value);
     };
 
+    const handleNavigate = () =>{
+        navigate('/addVideo');
+    }
+
   return (
     <div classNameName='bg-white'>
         <div id="mySidenav" style={{ width: isNavOpen ? '0' : '250px' }} className="sidenav">
@@ -137,7 +141,7 @@ export default function Video() {
                     <form className="d-flex">
                         <input className="form-control mr-sm-2 mx-1" type="search" placeholder="Search Movie" value={query} onChange={handleQueryChange}/>
                         <button className="btn btn-outline-danger my-2 my-sm-0" onClick={handleSearchClick}>Search</button>
-                        <a href="./addvideo" className="btn btn-danger my-2 my-sm-0 mx-2">Add</a>
+                        <button onClick={handleNavigate} className="btn btn-danger my-2 my-sm-0 mx-2">Add</button>
                         <button className="btn btn-primary my-2 my-sm-0" onClick={handleLogout}>Logout</button>
                     </form>
                 </div>

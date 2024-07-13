@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios'
 import { useNavigate } from 'react-router-dom';
+import '../../styles/login.css';
 
 export default function Login() {
 
@@ -25,31 +26,37 @@ export default function Login() {
 
   return (
     <div className="container">
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <div className="form-group">
-          <label className='text-dark'>user email</label>
-          <input
-            type="text"
-            className="form-control"
-            value={userEmail}
-            onChange={(e) => setUserEmail(e.target.value)}
-          />
+        <div className="body">
+            <nav className='nav'>
+                <a href="/"><img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="logo"/></a>
+            </nav>
+            <div class="form-wrapper">
+                <h2>Sign In</h2>
+                <form onSubmit={handleLogin} className='form'>
+                    <div class="form-control-1">
+                        <input type="text" required value={userEmail} onChange={(e) => setUserEmail(e.target.value)} className="input"/>
+                        <label>Email</label>
+                    </div>
+                    <div class="form-control-1">
+                        <input type="password" required value={password} onChange={(e) => setPassword(e.target.value)} className="input"/>
+                        <label>Password</label>
+                    </div>
+                    <button className='button py-3' type="submit">Sign In</button>
+                    <div class="form-help"> 
+                        <div class="remember-me">
+                            <input type="checkbox" id="remember-me" />
+                            <label for="remember-me">Remember me</label>
+                        </div>
+                        <a href="/">Back to Home</a>
+                    </div>
+                </form>
+                <p>New to Netflix? <a href="/register">Sign up now</a></p>
+                <small>
+                    This page is protected by Google reCAPTCHA to ensure you're not a bot. 
+                    <a href="/">Learn more.</a>
+                </small>
+            </div>
         </div>
-        <div className="form-group">
-          <label className='text-dark'>Password</label>
-          <input
-            type="password"
-            className="form-control"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </div>
-        <div className='text-dark'>Don't have and account ?<a href="/register" className='text-danger text-decoration-none mx-1'>Register</a></div>
-        <div className='text-dark'>Don't have and account ?<a href="/" className='text-primary text-decoration-none mx-1'>Back to home</a></div>
-        <button type="submit" className="btn btn-primary">Login</button>
-      </form>
-      {message && <p className="mt-3 text-dark">{message}</p>}
     </div>
   )
 }
