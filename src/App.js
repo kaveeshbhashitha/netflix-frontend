@@ -15,7 +15,7 @@ function App() {
       <Router>
         <Routes>
           <Route exact path="/" element={<Home/>}/>
-          <Route exact path="/gallery" element={<Gallery/>}/>
+          <Route exact path="/gallery/:userEmail" element={<Gallery/>}/>
           <Route exact path="/video" element={<Video/>}/>
           <Route exact path="/addvideo" element={<AddVideo/>}/>
           <Route exact path="/addvideo/:id" element={<UpdateVideo/>}/>

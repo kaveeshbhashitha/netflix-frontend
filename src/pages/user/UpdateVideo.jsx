@@ -15,7 +15,7 @@ export default function UpdateVideo() {
 
     useEffect(() => {
         loadUser()
-      }, []);
+    }, []);
     
       const loadUser=async () => {
         const result = await axios.get(`http://localhost:8080/video/searchById/${id}`)
@@ -24,7 +24,7 @@ export default function UpdateVideo() {
         }else{
             setMessage({ text: 'Error loading videos', class: 'alert alert-danger' });
         }
-      };
+    };
 
     const toggleNav = () => {
         setIsNavOpen(!isNavOpen);

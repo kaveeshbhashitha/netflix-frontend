@@ -50,7 +50,7 @@ body {
 }
 
 .form-wrapper .form {
-    margin: 25px 0 65px;
+    margin: 25px 0 20px;
 }
 
 .form .form-control-1 {
@@ -144,7 +144,8 @@ body {
 
 .form-wrapper small {
     display: block;
-    margin-top: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     color: #b3b3b3;
 }
 
@@ -173,4 +174,8 @@ body {
     .form-wrapper form {
         margin: 25px 0 40px;
     }
+}
+.text-samll{
+    font-size: 15px;
+    color: white;
 }

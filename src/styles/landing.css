@@ -335,3 +335,14 @@ ul{
         margin-top: -10%;
     }
 }
+
+.btn-circle {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    padding: 8px 0;
+    font-size: 15px;
+    line-height: 1.428571429;
+    border-radius: 50%;
+    font-weight: bold;
+  }

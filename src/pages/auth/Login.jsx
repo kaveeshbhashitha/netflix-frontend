@@ -17,10 +17,12 @@ export default function Login() {
             setMessage(response.data);
             if (response.data === 'Login successful') {
                 sessionStorage.setItem('user', userEmail);
-                navigate('/gallery')
+                navigate(`/gallery/${userEmail}`);
+            }else{
+                setMessage({ text: 'Invalid Email or Password, Try again', class: 'text-white text-samll' });
             }
         } catch (error) {
-            setMessage('Error logging in');
+            setMessage({ text: 'Error Login, Try again', class: 'text-danger' });
         }
     };
 
@@ -31,6 +33,7 @@ export default function Login() {
                 <a href="/"><img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="logo"/></a>
             </nav>
             <div class="form-wrapper">
+                <small>{ message && <h6 class={ message.class }>{message.text}</h6>}</small>
                 <h2>Sign In</h2>
                 <form onSubmit={handleLogin} className='form'>
                     <div class="form-control-1">

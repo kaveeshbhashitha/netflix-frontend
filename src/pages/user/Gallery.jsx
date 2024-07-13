@@ -3,7 +3,7 @@ import '../../styles/landing.css';
 import logo from '../../images/logo.png';
 import image2 from '../../images/image2.png';
 import sampleVideo from '../../video/video.mp4';
-import {useNavigate} from 'react-router-dom';
+import {useNavigate, useParams} from 'react-router-dom';
 import axios from 'axios';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle} from '@fortawesome/free-solid-svg-icons';
@@ -17,8 +17,9 @@ export default function Gallery() {
     const [video, setVideo] = useState('');
     let navigate = useNavigate();
     const [player, setPlayer] = useState(null);
-    //const {userId} = useParams();
-    var userId = 1;
+    const [user, setUser] = useState('');
+    const {userEmail} = useParams();
+    var userId = user.userId;
 
     const handleNavigateVideo = () => {
         navigate("/video")
@@ -41,8 +42,6 @@ export default function Gallery() {
     const onReady = (event) => {
         setPlayer(event.target);
     };
-    
-      
 
     const handleVideoClick = async (videoID) => {
         try {
@@ -66,7 +65,6 @@ export default function Gallery() {
                       }
                     }
                 };
-                userId++;
         } catch (error) {
             console.error('Error adding view:', error);
         }
@@ -85,6 +83,28 @@ export default function Gallery() {
         searchById();
     }, []);
 
+    useEffect(() => {
+        const loadUser = async () => {
+          try {
+            const result = await axios.get(`http://localhost:8080/user/searchByEmail/${userEmail}`);
+            if (result.status === 200) {
+              const userData = result.data;
+              const initials = userData.userName
+                .split(' ')
+                .map(name => name.charAt(0))
+                .join(' ');
+              setUser({ ...userData, initials });
+            } else {
+              console.log('Error loading user');
+            }
+          } catch (error) {
+            console.error('Error loading user', error);
+          }
+        };
+    
+        loadUser();
+      }, [userEmail]);
+
   return (
         <div style={{position: 'relative'}} className='bg-dark'>
             <nav className="navbar navbar-expand-lg netflix-navbar netflix-padding-left netflix-padding-right">
@@ -101,7 +121,7 @@ export default function Gallery() {
                             <button onClick={handleNavigateRegister}>Register</button>
                             <button className='mx-2'>Bombando</button>
                             <button>Minha Lista</button>
-                            <button className='mx-2'>Navegar por Idiomas</button>
+                            <button className='mx-2'>hello</button>
                         </section>
                     </div>
                     <div className="netflix-dropdown-box dropdown">
@@ -119,11 +139,7 @@ export default function Gallery() {
                     </div>
                     </div>
                     <div className="right d-flex align-items-center">
-                    <i className="bi bi-search"></i>
-                    <i className="bi bi-bell-fill"></i>
-                    <section className="netflix-profile">
-
-                    </section>
+                        <div className="btn btn-danger btn-circle"> {user && <p>{user.initials}</p>}</div>
                     </div>
                 </div>
                 </div>
