@@ -5,9 +5,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import useAuthCheck from '../../AuthCheck';
 
 export default function Subscriber() {
-
+    useAuthCheck();
+    
     const[isNavOpen, setIsNavOpen] = useState(false);
     const[message, setMessage] = useState(null);
     const[user, setUser] = useState([]);

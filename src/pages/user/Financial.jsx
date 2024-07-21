@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import Dashboard from '../../components/Dashboard';
+import useAuthCheck from '../../AuthCheck';
 
 export default function Financial() {
+    useAuthCheck();
     const[isNavOpen, setIsNavOpen] = useState(false);
 
     const toggleNav = () => {

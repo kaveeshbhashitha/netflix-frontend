@@ -6,8 +6,12 @@ import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList,
 import { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import useAuthCheck from '../../AuthCheck';
 
 export default function UpdateVideo() {
+
+    useAuthCheck();
+
     const [isNavOpen, setIsNavOpen] = useState(false);
     const {id} = useParams();
     const[video, setVideo] = useState([]);

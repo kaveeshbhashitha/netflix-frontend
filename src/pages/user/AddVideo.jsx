@@ -5,8 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import axios from 'axios';
+import useAuthCheck from '../../AuthCheck';
 
 export default function AddVideo() {
+    useAuthCheck();
     const [isNavOpen, setIsNavOpen] = useState(false);
     const [message, setMessage] = useState('');
     const [formData, setFormData] = useState({ youtubeId: '', videoTitle: '', category: '', videoType: '' });
