@@ -11,8 +11,7 @@ import YouTube from 'react-youtube';
 import useAuthCheck from '../../AuthCheck';
 import { Link } from 'react-router-dom';
 
-export default function Gallery() {
-
+export default function PlayList() {
     useAuthCheck();
 
     const [video, setVideo] = useState('');
@@ -105,9 +104,8 @@ export default function Gallery() {
     
         loadUser();
       }, [userEmail]);
-
   return (
-        <div style={{position: 'relative'}} className='bg-dark'>
+    <div style={{position: 'relative'}} className='bg-dark'>
             <nav className="navbar navbar-expand-lg netflix-navbar netflix-padding-left netflix-padding-right">
                 <div className="container-fluid">
                 <div className="netflix-row">
