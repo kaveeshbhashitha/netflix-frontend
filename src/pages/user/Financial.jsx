@@ -38,7 +38,7 @@ export default function Financial() {
             <div className='d-flex justify-content-between'>
                 <div className="d-flex">
                     <h4 onClick={toggleNav} className="openbtn text-dark"><FontAwesomeIcon icon={faList}/></h4>
-                    <a className="nav-link text-dark mx-3" href="/"><h4>All Video</h4></a>
+                    <a className="nav-link text-dark mx-3" href="/"><h4>Statistics & Dashboard</h4></a>
                 </div>
                 <div className="">
                     <form className="d-flex">
