@@ -15,8 +15,11 @@ export default function Register() {
         e.preventDefault();
         try {
             const response = await axios.post('http://localhost:8080/user/register', { userName, userEmail, password });
-            console.log(response.data);
-            navigate('/login');
+            if (response.data === "User already registered as a user") {
+                setMessage({text: response.data, class: 'alert alert-danger'});
+            }else{
+                navigate('/login');
+            }
         } catch (error) {
             setMessage({ text: 'Error occuerd, registration faild', class: 'alert alert-danger' });
         }

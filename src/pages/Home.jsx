@@ -121,7 +121,11 @@ export default function Home() {
             </div>
 
             <div className="navbar__nav__items">
-                <div className="footer__row__3">
+                <div className="footer__row__3 d-flex">
+                <a href='/gallery' className="dropdown__container mx-2 text-decoration-none">
+                    My Videos
+                    
+                </a>
                 <div className="dropdown__container">
                     <i className="fas fa-globe"></i>
                     <select
