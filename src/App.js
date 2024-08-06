@@ -11,6 +11,7 @@ import Trending from "./pages/user/Trending";
 import Test from "./pages/user/Test";
 import Financial from "./pages/user/Financial";
 import PlayList from "./pages/user/PlayList";
+import Payment from "./pages/payments/Payment";
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
           <Route exact path="/trending" element={<Trending/>}/>
           <Route exact path="/test" element={<Test/>}/>
           <Route exact path="/financial" element={<Financial/>}/>
+          <Route exact path="/payment" element={<Payment/>}/>
         </Routes> 
       </Router>
     </div>

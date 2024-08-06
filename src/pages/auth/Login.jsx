@@ -19,7 +19,7 @@ export default function Login() {
                 sessionStorage.setItem('user', userEmail);
                 navigate(`/gallery/${userEmail}`);
             }else{
-                setMessage({ text: 'Invalid Email or Password, Try again', class: 'text-white text-samll' });
+                setMessage({ text: 'Invalid Email or Password, Try again', class: 'text-dange' });
             }
         } catch (error) {
             setMessage({ text: 'Error Login, Try again', class: 'text-danger' });

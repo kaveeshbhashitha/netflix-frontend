@@ -30,6 +30,9 @@ export default function PlayList() {
     const handleNavigateRegister = () => {
         navigate("/register")
     };
+    const handleNavigatePayment = () => {
+        navigate("/payment")
+    };
 
     const opts = {
         height: 'auto',
@@ -118,7 +121,7 @@ export default function PlayList() {
                             <button onClick={handleNavigateVideo}>Video</button>
                             <button className='mx-2' onClick={handleNavigateLogin}>Login</button>
                             <button onClick={handleNavigateRegister}>Register</button>
-                            <button className='mx-2'>Bombando</button>
+                            <button className='mx-2' onClick={handleNavigatePayment}>Payments</button>
                             <button>Minha Lista</button>
                             <button className='mx-2'>hello</button>
                         </section>
