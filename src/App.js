@@ -14,6 +14,7 @@ import PlayList from "./pages/user/PlayList";
 import Payment from "./pages/payments/Payment";
 import Continue from "./pages/payments/Continue";
 import Plans from "./pages/payments/Plans";
+import Choose from "./pages/payments/Choose";
 
 
 function App() {
@@ -34,9 +35,10 @@ function App() {
           <Route exact path="/trending" element={<Trending/>}/>
           <Route exact path="/test" element={<Test/>}/>
           <Route exact path="/financial" element={<Financial/>}/>
-          <Route exact path="/payment/:id" element={<Payment/>}/>
-          <Route exact path="/continue" element={<Continue/>}/>
-          <Route exact path="/plans" element={<Plans/>}/>
+          <Route exact path="/payment/:id/:email" element={<Payment/>}/>
+          <Route exact path="/continue/:email" element={<Continue/>}/>
+          <Route exact path="/plans/:email" element={<Plans/>}/>
+          <Route exact path="/choose/:id/:email" element={<Choose />} />
         </Routes> 
       </Router>
     </div>

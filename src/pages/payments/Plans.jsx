@@ -2,12 +2,13 @@ import '../../styles/continue.css'
 import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheckCircle } from '@fortawesome/free-solid-svg-icons';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 export default function Plans() {
     const [selectedId, setSelectedId] = useState(null);
     const navigate = useNavigate();
+    let {email} = useParams();
 
     const handleDivClick = (id) => {
         setSelectedId(id);
@@ -15,7 +16,7 @@ export default function Plans() {
 
     const handleNextClick = () => {
         if (selectedId !== null) {
-        navigate(`/payment/${selectedId}`);
+          navigate(`/choose/${selectedId}/${email}`);
         }
     };
 

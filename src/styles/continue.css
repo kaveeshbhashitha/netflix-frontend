@@ -108,3 +108,59 @@ a{
 .boxes:hover{
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+.payment-button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1.7px solid #bdbdbd;
+    padding: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #fff;
+    max-width: 500px;
+    margin: auto;
+    position: relative;
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+}
+
+.button-content span {
+    margin-right: 15px;
+    font-size: 16px;
+}
+
+.card-icons img {
+    margin-right: 10px;
+    width: 30px;
+    height: auto;
+}
+
+.arrow-icon {
+    font-size: 20px;
+    color: #333;
+}
+
+.payment-button::after {
+    content: 'End-to-end encrypted 🔒';
+    font-size: 12px;
+    color: #333;
+    position: absolute;
+    top: -20px;
+    right: 0;
+    display: flex;
+    align-items: center;
+}
+
+.payment-button::after::before {
+    content: '🔒';
+    margin-right: 5px;
+}
+
+.lock{
+    width: 500px;
+    height: auto;
+    margin-top: 200px;
+}

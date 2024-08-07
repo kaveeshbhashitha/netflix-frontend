@@ -122,20 +122,7 @@ export default function Home() {
 
             <div className="navbar__nav__items">
                 <div className="footer__row__3 d-flex">
-                <a href='/continue' className="dropdown__container mx-2 text-decoration-none">
-                    My Videos
-                    
-                </a>
-                <div className="dropdown__container">
-                    <i className="fas fa-globe"></i>
-                    <select
-                            name="languages"
-                            className="language__drop__down"
-                    >
-                        <option value="english" selected>English</option>
-                        <option value="hindi">हिन्दी</option>
-                    </select>
-                </div>
+
             </div>
 
                 <div className="nav__item mt-2">

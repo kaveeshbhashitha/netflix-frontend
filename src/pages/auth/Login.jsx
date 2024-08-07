@@ -53,7 +53,7 @@ export default function Login() {
                         <a href="/">Back to Home</a>
                     </div>
                 </form>
-                <p>New to Netflix? <a href="/register">Sign up now</a></p>
+                <p>New to Netflix? <a href="/register" className='small'>Sign up now</a></p>
                 <small>
                     This page is protected by Google reCAPTCHA to ensure you're not a bot. 
                     <a href="/">Learn more.</a>

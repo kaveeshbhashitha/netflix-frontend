@@ -1,8 +1,9 @@
 import React from 'react'
 import '../../styles/continue.css'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 export default function Continue() {
+  let {email} = useParams();
   return (
     <div>
         <div class="container">
@@ -13,7 +14,7 @@ export default function Continue() {
         <div className='continue'>
             <div>
                 <img src='/images/image.png' alt="Devices Image" className="devices"/><br /><br />
-                <Link className="next-button text-decoration-none" to={'/plans'}>Next</Link>
+                <Link className="next-button text-decoration-none" to={`/plans/${email}`}>Next</Link>
             </div>
         </div>
     </div>

@@ -18,7 +18,7 @@ export default function Register() {
             if (response.data === "User already registered as a user") {
                 setMessage({text: response.data, class: 'alert alert-danger'});
             }else{
-                navigate('/login');
+                navigate(`/continue/${userEmail}`);
             }
         } catch (error) {
             setMessage({ text: 'Error occuerd, registration faild', class: 'alert alert-danger' });
