@@ -24,6 +24,7 @@ body {
   color: black;
   display: block;
   transition: 0.3s;
+  font-size: 15px;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -71,8 +72,12 @@ body {
     color: #E50914;
 }
 .logo{
+  margin-left: 30px;
   display: flex;
   text-align: center;
   align-items: center;
   justify-content: center;
+}
+.text-small{
+  font-size: 12px;
 }

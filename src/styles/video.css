@@ -1,0 +1,16 @@
+.stats-item{
+
+}
+
+.stats-item-1{
+    background-image: linear-gradient(to right, #32419d, #285fc8);
+}
+.stats-item-2{
+    background-image: linear-gradient(to right, #234d9c, #653bd9);
+}
+.stats-item-3{
+    background-image: linear-gradient(to right, #224c9c, #a039d3);
+}
+.stats-item-4{
+    background-image: linear-gradient(to right, #32419d, #d10f24);
+}

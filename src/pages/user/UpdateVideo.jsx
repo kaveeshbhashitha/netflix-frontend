@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import '../../styles/videolist.css';
 import logo from '../../images/logo.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown } from '@fortawesome/free-solid-svg-icons';
+import { faBell, faCoins, faFeed, faFlag, faGear, faHouse, faInfoCircle, faList, faPlay, faUpDown, faBarChart } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
@@ -71,6 +71,7 @@ export default function UpdateVideo() {
                     <a href="/subscriber" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faBell} /><div className="link-text">Subscription</div></div></a>
                     <a href="/financial" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faCoins} /><div className="link-text">Financial</div></div></a>
                     <a href="/trending" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faUpDown}/><div className="link-text">Trending</div></div></a>
+                    <a href="/statistical" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faBarChart}/><div className="link-text">Statistics</div></div></a>
                     <a href="/" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faGear}/><div className="link-text">Settings</div></div></a>
                     <a href="/" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faInfoCircle}/><div className="link-text">Help</div></div></a>
                     <a href="/" className="side-link"><div className="d-flex"><FontAwesomeIcon icon={faFlag}/><div className="link-text">Report</div></div></a>

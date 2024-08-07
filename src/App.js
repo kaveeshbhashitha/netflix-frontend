@@ -15,6 +15,7 @@ import Payment from "./pages/payments/Payment";
 import Continue from "./pages/payments/Continue";
 import Plans from "./pages/payments/Plans";
 import Choose from "./pages/payments/Choose";
+import Statistical from "./pages/user/Statistical";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
           <Route exact path="/continue/:email" element={<Continue/>}/>
           <Route exact path="/plans/:email" element={<Plans/>}/>
           <Route exact path="/choose/:id/:email" element={<Choose />} />
+          <Route exact path="/statistical" element={<Statistical />} />
         </Routes> 
       </Router>
     </div>
