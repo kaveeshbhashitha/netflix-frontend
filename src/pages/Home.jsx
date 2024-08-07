@@ -122,7 +122,7 @@ export default function Home() {
 
             <div className="navbar__nav__items">
                 <div className="footer__row__3 d-flex">
-                <a href='/gallery' className="dropdown__container mx-2 text-decoration-none">
+                <a href='/continue' className="dropdown__container mx-2 text-decoration-none">
                     My Videos
                     
                 </a>
